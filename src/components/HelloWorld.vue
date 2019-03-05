@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <button @click="getClick">11111</button>
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
@@ -80,6 +81,8 @@
         </a>
       </li>
     </ul>
+    <test-panel ref="panel"></test-panel>
+    <test-toast ref="toast"></test-toast>
   </div>
 </template>
 
@@ -89,6 +92,13 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  methods: {
+    getClick () {
+      this.$nextTick(() => {
+        this.$refs.toast.toastPlugin('diaoyong', 2000)
+      })
     }
   }
 }
