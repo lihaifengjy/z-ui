@@ -4,7 +4,8 @@ import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
 
-const context = require.context('@/components/', true, /demo\.vue$/)
+const context = require.context('@/components/', true, /index\.vue$/)
+console.log(context.keys())
 const componentRouters = context.keys().map(url => {
   const start = url.indexOf('/')
   const end = url.lastIndexOf('/')
@@ -14,9 +15,10 @@ const componentRouters = context.keys().map(url => {
   return {
     name,
     path,
-    component: require(`@/components${path}/demo`).default
+    component: require(`@/components${path}/index.vue`).default
   }
 })
+console.log(componentRouters)
 
 export default new Router({
   routes: [

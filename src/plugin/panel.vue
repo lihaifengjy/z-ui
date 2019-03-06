@@ -5,6 +5,7 @@
       <p v-show="!checkedNumber" class="number-show">  </p>
       <ul>
         <li @click="clickThisNumber($event)" v-for="index in 9" :key="index">{{index}}</li>
+        <li @click="clickThisNumber($event)">del</li>
         <li @click="clickThisNumber($event)">0</li>
       </ul>
     </div>
@@ -23,7 +24,11 @@ export default {
   },
   methods: {
     clickThisNumber (e) {
-      this.checkedNumber = this.checkedNumber.concat(e.currentTarget.innerHTML)
+      if (e.currentTarget.innerHTML === 'del') {
+        this.checkedNumber = this.checkedNumber.substr(0, this.checkedNumber.length - 1)
+      } else {
+        this.checkedNumber = this.checkedNumber.concat(e.currentTarget.innerHTML)
+      }
     }
   }
 }
